@@ -62,11 +62,11 @@
           :menu-props="{
             contentClass: !search ? 'initialLayout' : '',
             minWidth: '696',
-            minHeight: '500',
+            minHeight: 'initial',
             maxHeight: '90vh',
           }"
         >
-          <template slot="prepend-item" v-if="isLoading">
+          <template slot="prepend-item" v-if="isLoading && search">
             <v-sheet class="skeleton">
               <v-skeleton-loader
                 v-bind="merchants"
@@ -81,6 +81,7 @@
 
           <template v-slot:item="merchant">
             <v-list-item-avatar
+              v-if="!isLoading"
               v-bind:style="{
                 backgroundImage: 'url(' + merchant.item.logo + ')',
               }"
@@ -88,7 +89,7 @@
             >
             </v-list-item-avatar>
 
-            <v-list-item-content>
+            <v-list-item-content v-if="!isLoading">
               <v-list-item-title
                 v-html="merchant.item.name"
               ></v-list-item-title>
@@ -187,7 +188,9 @@ export default {
               ...resp.data.merchants,
             ];
             this.merchants = _.uniqBy(tempMerchants, 'id');
-            this.isLoading = false;
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 600);
           }
         })
         .catch((e) => {
@@ -259,6 +262,8 @@ export default {
 .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
   border-radius: 6px !important;
   overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .v-input__append-inner .v-input__icon {
   height: 40px !important;
@@ -271,6 +276,10 @@ i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
 .v-list {
   padding: 34px;
 }
+.v-application a {
+  color: #343434 !important;
+  font-size: 21px;
+}
 .skeleton {
   width: 160px;
   margin-left: 15px;
@@ -279,7 +288,7 @@ i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
   margin-bottom: 15px;
 }
 .v-skeleton-loader__bone {
-    margin-bottom: 11px;
+  margin-bottom: 11px;
 }
 .v-skeleton-loader--is-loading {
   overflow: hidden;
@@ -315,6 +324,7 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0;
 }
 .v-menu-footer {
   width: 100%;
