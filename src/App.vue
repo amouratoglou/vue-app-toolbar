@@ -41,7 +41,7 @@
           background-color="white"
           append-icon="mdi-magnify"
           rounded
-          placeholder="Search stores"
+          :placeholder="getPlaceHolder()"
           @focus="searchClosed = false"
           @blur="searchClosed = true"
           class="expanding-search"
@@ -61,16 +61,14 @@
           return-object
           :menu-props="{
             contentClass: !search ? 'initialLayout' : '',
-            minWidth: '696',
-            minHeight: '500',
-            maxHeight: '90vh',
+            minWidth: '760',
           }"
         >
-          <template slot="prepend-item" v-if="isLoading">
+          <template slot="prepend-item" v-if="isLoading && search">
             <v-sheet class="skeleton">
               <v-skeleton-loader
                 v-bind="merchants"
-                type="avatar, text, avatar, text, avatar, text"
+                type="avatar, text, avatar, text, avatar, text, avatar, text, avatar, text"
               ></v-skeleton-loader>
             </v-sheet>
           </template>
@@ -81,6 +79,7 @@
 
           <template v-slot:item="merchant">
             <v-list-item-avatar
+              v-if="!isLoading"
               v-bind:style="{
                 backgroundImage: 'url(' + merchant.item.logo + ')',
               }"
@@ -88,7 +87,7 @@
             >
             </v-list-item-avatar>
 
-            <v-list-item-content>
+            <v-list-item-content v-if="!isLoading">
               <v-list-item-title
                 v-html="merchant.item.name"
               ></v-list-item-title>
@@ -115,8 +114,8 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="white" depressed light v-bind="attrs" v-on="on">
-            <div class="Menu flex">
-              <div class="Menu__hamburger mr-4">
+            <div class="Menu">
+              <div class="Menu__hamburger mr-4" :class="{ menu_open: menu }">
                 <div></div>
               </div>
             </div>
@@ -187,7 +186,9 @@ export default {
               ...resp.data.merchants,
             ];
             this.merchants = _.uniqBy(tempMerchants, 'id');
-            this.isLoading = false;
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 600);
           }
         })
         .catch((e) => {
@@ -198,6 +199,10 @@ export default {
       if (!this.search) {
         return 'initialLayout';
       }
+    },
+    getPlaceHolder() {
+      if (this.searchClosed) return 'Search stores';
+      if (!this.searchClosed) return 'Try "StoreName"';
     },
     searchMerchants(query, queryType) {
       // query / limit
@@ -224,6 +229,9 @@ export default {
 </script>
 
 <style>
+.body {
+  background: #f7f7f7;
+}
 .Search {
   width: 600px;
   margin: auto;
@@ -232,10 +240,10 @@ export default {
 .v-input {
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   transition: all 0.3s ease;
-  border: 1px solid rgba(235, 235, 235);
+  border: 1px solid rgba(235, 235, 235) !important;
 }
 .closed {
-  width: 365px !important;
+  width: 429px !important;
   margin: auto;
   transition: all 0.3s ease;
 }
@@ -250,26 +258,47 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 }
+.Search input::placeholder {
+  opacity: 1;
+  font-weight: normal;
+  color: #979797 !important;
+}
+
+.Search.closed input::placeholder {
+  font-weight: 500;
+  color: #343434 !important;
+}
+
+button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
+  padding: 0 0 0 12px !important;
+}
 .closed .v-input__append-inner .v-input__icon {
   height: 34px !important;
   width: 34px !important;
   color: #fff;
   transition: all 0.5s ease;
 }
-.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-  border-radius: 6px !important;
-  overflow: hidden;
-}
+
 .v-input__append-inner .v-input__icon {
-  height: 40px !important;
-  width: 40px !important;
+  height: 48px !important;
+  width: 48px !important;
   transition: all 0.5s ease;
 }
+.v-text-field--filled.v-input--dense > .v-input__control > .v-input__slot,
+.v-text-field--full-width.v-input--dense > .v-input__control > .v-input__slot,
+.v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot {
+  min-height: 52px !important;
+}
+
 i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
   color: #fff;
 }
 .v-list {
   padding: 34px;
+}
+.v-application a {
+  color: #343434 !important;
+  font-size: 21px;
 }
 .skeleton {
   width: 160px;
@@ -279,7 +308,7 @@ i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
   margin-bottom: 15px;
 }
 .v-skeleton-loader__bone {
-    margin-bottom: 11px;
+  margin-bottom: 11px;
 }
 .v-skeleton-loader--is-loading {
   overflow: hidden;
@@ -301,9 +330,7 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   margin-top: 14px;
   margin-left: -199px;
 }
-.body {
-  background: #f7f7f7;
-}
+
 .v-toolbar__content,
 .v-toolbar__extension {
   padding: 0 !important;
@@ -315,38 +342,102 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0;
 }
 .v-menu-footer {
   width: 100%;
 }
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
+  max-height: 500px !important;
+  height: 500px !important;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout {
+  max-height: 600px !important;
+  height: auto !important;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout {
+  padding-top: 20px !important;
+}
+
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
+  padding-top: 0 !important;
+}
+
+.v-autocomplete__content
+  .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  border-radius: 6px !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .initialLayout .v-list .v-list-item {
   max-width: 30%;
   flex-grow: 1;
   box-sizing: border-box;
   justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex: 1 1 100%;
+  letter-spacing: normal;
+  min-height: 48px;
+  outline: none;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 11px !important;
+  padding-right: 11px !important;
+  position: relative;
+  text-decoration: none;
+  margin-left: 7px !important;
+  margin-right: 7px !important;
 }
+.v-list-item__title {
+  font-size: 21px !important;
+  font-weight: 400 !important;
+  margin-left: 16px;
+  line-height: auto !important;
+}
+
 .initialLayout .v-list-item__title {
   font-size: 18px !important;
   margin-bottom: 10px !important;
   font-weight: normal !important;
   letter-spacing: -0.25px;
   line-height: 20px;
+  margin-left: 0;
 }
+
+.v-autocomplete__content .v-list-item {
+  min-height: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 35px;
+  margin-bottom: 0 !important;
+}
+
 .v-btn:not(.v-btn--round).v-size--default {
   height: 58px !important;
   min-width: 64px !important;
-  border-radius: 24px;
+  border-radius: 41px;
   padding: 5px 5px 5px 12px !important;
   position: relative;
   transition: box-shadow 0.2s ease;
   border: 1px solid #ebebeb !important;
 }
+
+.v-btn:hover {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
+  transition: box-shadow 0.2s ease;
+}
+
 .v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout:before {
   content: 'Popular Stores';
   font-weight: bold;
   text-transform: uppercase;
-  padding-left: 30px;
+  padding-left: 18px;
   font-size: 17px;
+  margin-top: 10px !important;
+  display: inline-block;
 }
 .v-avatar {
   width: 36px !important;
@@ -367,6 +458,7 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
 .v-menu-footer {
   background: #f7f7f7;
   padding: 20px;
+  margin-top: 30px;
   text-align: center;
 }
 .v-input__slot.white {
@@ -398,34 +490,45 @@ h4 {
 }
 .Menu {
   border-radius: 24px;
-  padding: 5px 5px 5px 12px;
+  padding: 0 !important;
   position: relative;
+  display: flex;
   transition: box-shadow 0.2s ease;
 }
-.flex {
+.Menu__hamburger {
   display: flex;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  pointer-events: all;
+  background: transparent;
+  outline: none;
 }
-.Menu__hamburger.is-opened:before {
+
+.Menu__hamburger.menu_open:before {
   transform: translateY(2px) rotate(135deg);
 }
-.Menu__hamburger.is-opened:after {
+.Menu__hamburger.menu_open:after {
   transform: translateY(-2px) rotate(45deg);
+}
+
+.Menu__hamburger:after,
+.Menu__hamburger:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: #000;
+  transition: transform 0.3s ease-out;
 }
 .Menu__hamburger:after {
   top: auto !important;
   bottom: 6px !important;
 }
-.Menu__hamburger:after,
-.Menu__hamburger:before {
-  content: '';
-  position: absolute;
-  top: 7px;
-  left: 0;
-  width: 21px;
-  height: 2px;
-  background: #000;
-  transition: transform 0.3s ease-out;
-}
+
 .v-avatar.v-list-item__avatar {
   display: inline-block;
   background-size: 100%;
@@ -436,9 +539,11 @@ h4 {
   border-width: 1px;
   width: 60px;
   height: 60px;
+  min-width: auto !important;
 }
 .v-avatar.v-list-item__avatar.smallAvatar {
   width: 40px !important;
   height: 40px !important;
+  min-width: auto !important;
 }
 </style>
