@@ -109,6 +109,7 @@
         v-model="menu"
         :close-on-content-click="false"
         :nudge-width="200"
+        class="nav-menu"
         offset-y
         rounded-pill
       >
@@ -128,7 +129,7 @@
           </v-btn>
         </template>
 
-        <v-card>
+        <v-card class="nav">
           <v-list>
             <v-list-item>
               <v-list-item-title>Settings</v-list-item-title>
@@ -139,6 +140,7 @@
             <v-list-item>
               <v-list-item-title>Submit Coupons</v-list-item-title>
             </v-list-item>
+
             <v-divider></v-divider>
 
             <v-list-item>
@@ -229,6 +231,9 @@ export default {
 </script>
 
 <style>
+.v-application {
+  font-family: 'Proxima Nova' !important;
+}
 .body {
   background: #f7f7f7;
 }
@@ -265,12 +270,25 @@ export default {
 }
 
 .Search.closed input::placeholder {
-  font-weight: 500;
-  color: #343434 !important;
+  font-weight: 600;
+  color: #111 !important;
 }
 
 button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
   padding: 0 0 0 12px !important;
+}
+.nav.v-card.v-sheet.theme--light .v-list-item:hover {
+  background: #f1f1f1 !important;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.nav .v-list-item__title {
+  font-size: 19px;
+  line-height: 20px !important;
+  font-weight: 600;
+}
+.nav-menu.v-menu__content.theme--light.menuable__content__active {
+  margin-top: 33px !important;
 }
 .closed .v-input__append-inner .v-input__icon {
   height: 34px !important;
@@ -327,8 +345,12 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
 .v-menu__content.theme--light.menuable__content__active {
   width: 240px;
   box-shadow: 0 10px 35px 0 rgb(0 0 0 / 15%);
-  margin-top: 14px;
+  margin-top: 25px !important;
   margin-left: -199px;
+}
+
+.Search .v-menu__content.theme--light.menuable__content__active {
+  top: 71px;
 }
 
 .v-toolbar__content,
@@ -391,14 +413,14 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   margin-left: 7px !important;
   margin-right: 7px !important;
 }
-.v-list-item__title {
+.v-autocomplete__content .v-list-item__title {
   font-size: 21px !important;
   font-weight: 400 !important;
   margin-left: 16px;
   line-height: auto !important;
 }
 
-.initialLayout .v-list-item__title {
+.v-autocomplete__content.initialLayout .v-list-item__title {
   font-size: 18px !important;
   margin-bottom: 10px !important;
   font-weight: normal !important;
@@ -406,13 +428,25 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   line-height: 20px;
   margin-left: 0;
 }
-
 .v-autocomplete__content .v-list-item {
   min-height: auto !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
   padding-left: 35px;
   margin-bottom: 0 !important;
+}
+
+.v-autocomplete__content .v-avatar.v-list-item__avatar {
+  display: inline-block;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+  border: 1px solid #ebebeb !important;
+  border-radius: 9999px;
+  border-width: 1px;
+  width: 60px !important;
+  height: 60px !important;
+  min-width: auto !important;
 }
 
 .v-btn:not(.v-btn--round).v-size--default {
@@ -529,18 +563,6 @@ h4 {
   bottom: 6px !important;
 }
 
-.v-avatar.v-list-item__avatar {
-  display: inline-block;
-  background-size: 100%;
-  background-position: center;
-  cursor: pointer;
-  border: 1px solid #ebebeb !important;
-  border-radius: 9999px;
-  border-width: 1px;
-  width: 60px;
-  height: 60px;
-  min-width: auto !important;
-}
 .v-avatar.v-list-item__avatar.smallAvatar {
   width: 40px !important;
   height: 40px !important;
