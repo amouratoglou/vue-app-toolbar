@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar
-      id="Header"
+      class="Header"
       absolute
       color="#fff"
       light
@@ -35,7 +35,7 @@
       </div>
       <div class="Search" :class="{ closed: searchClosed }">
         <v-autocomplete
-          id="autocomplete"
+          class="expanding-search"
           fullWidth
           color="white"
           background-color="white"
@@ -44,7 +44,6 @@
           :placeholder="getPlaceHolder()"
           @focus="searchClosed = false"
           @blur="searchClosed = true"
-          class="expanding-search"
           :dense="searchClosed ? true : false"
           :loading="isLoading"
           clearable
@@ -246,357 +245,384 @@ export default {
 };
 </script>
 
-<style lang="sass">
-body .v-application
-  font-family: 'Proxima Nova', sans-serif
+<style>
+body .v-application {
+  font-family: 'Proxima Nova', sans-serif;
+}
 
-.body
-  background: #f7f7f7
+.body {
+  background: #f7f7f7;
+}
+.Search {
+  width: 600px;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+.v-toolbar__content .Search .v-input {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(235, 235, 235);
+}
+.v-toolbar__content .Search .v-input:hover {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
+  transition: all 0.3s ease;
+}
 
-.Search
-  width: 600px
-  margin: auto
-  transition: all 0.3s ease
+.v-toolbar__content .Search.closed {
+  width: 365px !important;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+body .v-toolbar--prominent .v-toolbar__content {
+  align-items: center;
+}
+.v-input__append-inner .v-input__icon {
+  background: #635bff;
+  border-radius: 100%;
+}
+.Menu__hamburger div {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.Search input::placeholder {
+  opacity: 1;
+  font-weight: normal;
+  font-size: 15px;
+  color: #979797 !important;
+}
+body .Search.closed input::placeholder {
+  font-weight: 600;
+  font-size: 15px;
+  color: #343434 !important;
+}
+body button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
+  padding: 0 0 0 12px;
+}
+body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
+  background: #f1f1f1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.nav .v-list-item__title {
+  font-size: 15px;
+  line-height: 20px !important;
+  font-weight: 500;
+}
+.nav-menu.v-menu__content.theme--light.menuable__content__active {
+  margin-top: 33px !important;
+}
+.closed .v-input__append-inner .v-input__icon {
+  height: 34px !important;
+  width: 34px !important;
+  color: #fff;
+  transition: all 0.5s ease;
+}
+.v-input__append-inner .v-input__icon {
+  height: 48px !important;
+  width: 48px !important;
+  transition: all 0.5s ease;
+}
+.closed .v-input__icon i {
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
 
-.v-toolbar__content .Search
-  .v-input
-    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%)
-    transition: all 0.3s ease
-    border: 1px solid rgba(235, 235, 235)
+.v-input__icon i {
+  font-size: 22px;
+  transition: all 0.5s ease;
+}
+.mdi-close::before {
+  content: '\F0156';
+  font-size: 10px;
+  background: rgba(235, 235, 235, 235);
+  border-radius: 100px;
+  padding: 5px;
+  margin-right: 18 px;
+}
 
-  &.closed
-    width: 365px !important
-    margin: auto
-    transition: all 0.3s ease
+.v-text-field--filled.v-input--dense > .v-input__control > .v-input__slot,
+.v-text-field--full-width.v-input--dense > .v-input__control > .v-input__slot,
+.v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot {
+  min-height: 48px !important;
+}
+i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
+  color: #fff;
+}
+.v-list {
+  padding: 34px;
+}
+.v-list-item__title p {
+  margin-bottom: 0 !important;
+}
+.v-application a {
+  color: #343434 !important;
+  font-size: 21px;
+}
+.skeleton {
+  width: 160px;
+  margin-left: 15px;
+}
+.skeleton > div {
+  margin-bottom: 15px;
+}
+.v-skeleton-loader__bone {
+  margin-bottom: 11px;
+}
+.v-skeleton-loader--is-loading {
+  overflow: hidden;
+  display: grid !important;
+  grid-template-columns: 50% 50%;
+}
+.v-skeleton-loader__text.v-skeleton-loader__bone {
+  margin-top: 15px;
+}
+button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
+  color: #111 !important;
+}
+.v-input__icon.v-input__icon--clear {
+  background: #fff !important;
+}
+.v-menu__content.theme--light.menuable__content__active {
+  width: 240px;
+  box-shadow: 0 10px 35px 0 rgb(0 0 0 / 15%);
+  margin-top: 25px !important;
+}
 
-body .v-toolbar--prominent .v-toolbar__content
-  align-items: center
+.Search .v-menu__content.theme--light.menuable__content__active {
+  top: 71px;
+}
 
-.v-input__append-inner .v-input__icon
-  background: #635bff
-  border-radius: 100%
-
-.Menu__hamburger div
-  overflow: hidden
-  white-space: nowrap
-
-.Search input::placeholder
-  opacity: 1
-  font-weight: normal
-  font-size: 15px
-  color: #979797 !important
-
-body
-  .Search.closed input::placeholder
-    font-weight: 600
-    font-size: 15px
-
-  button.v-btn.v-btn--has-bg.theme--light.v-size--default.white
-    padding: 0 0 0 12px
-
-  .nav.v-card.v-sheet.theme--light .v-list-item:hover
-    background: #f1f1f1
-    transition: all 0.2s ease
-    cursor: pointer
-
-.nav .v-list-item__title
-  font-size: 15px
-  line-height: 20px !important
-  font-weight: 500
-
-.nav-menu.v-menu__content.theme--light.menuable__content__active
-  margin-top: 33px !important
-
-.closed .v-input__append-inner .v-input__icon
-  height: 34px !important
-  width: 34px !important
-  color: #fff
-  transition: all 0.5s ease
-
-.v-input__append-inner .v-input__icon
-  height: 48px !important
-  width: 48px !important
-  transition: all 0.5s ease
-
-.closed .v-input__icon i
-  font-size: 18px
-  transition: all 0.5s ease
-
-.v-input__icon i
-  font-size: 22px
-  transition: all 0.5s ease
-
-.mdi-close::before
-  content: '\F0156'
-  font-size: 10px
-  background: rgba(235, 235, 235, 235)
-  border-radius: 100px
-  padding: 5px
-  margin-right: 18 px
-
-.v-text-field--filled.v-input--dense > .v-input__control > .v-input__slot, .v-text-field--full-width.v-input--dense > .v-input__control > .v-input__slot, .v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot
-  min-height: 48px !important
-
-i.v-icon.notranslate.mdi.mdi-magnify.theme--light
-  color: #fff
-
-.v-list
-  padding: 34px
-
-.v-application a
-  color: #343434 !important
-  font-size: 21px
-
-.skeleton
-  width: 160px
-  margin-left: 15px
-
-  > div
-    margin-bottom: 15px
-
-.v-skeleton-loader__bone
-  margin-bottom: 11px
-
-.v-skeleton-loader--is-loading
-  overflow: hidden
-  display: grid !important
-  grid-template-columns: 50% 50%
-
-.v-skeleton-loader__text.v-skeleton-loader__bone
-  margin-top: 15px
-
-button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text
-  color: #111 !important
-
-.v-input__icon.v-input__icon--clear
-  background: #fff !important
-
-.v-menu__content.theme--light.menuable__content__active
-  width: 240px
-  box-shadow: 0 10px 35px 0 rgb(0 0 0 / 15%)
-  margin-top: 25px !important
-
-.Search .v-menu__content.theme--light.menuable__content__active
-  top: 71px
-
-.v-toolbar__content, .v-toolbar__extension
-  padding: 0 !important
-
-.v-autocomplete__content.initialLayout > div
-  display: flex
-  box-sizing: border-box
-  flex-wrap: wrap
-  flex-direction: row
-  justify-content: space-between
-  align-items: center
-  padding-bottom: 0
-
-.v-menu-footer
-  width: 100%
-
-.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content
-  max-height: 500px !important
-  height: 500px !important
-
-  &.initialLayout
-    max-height: 600px !important
-    height: auto !important
-    padding-top: 20px !important
-
-  padding-top: 0 !important
-
-.v-autocomplete__content .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled)
-  border-radius: 6px !important
-  overflow: hidden
-  margin-bottom: 20px
-  margin-top: 20px
-
-.initialLayout .v-list .v-list-item
-  max-width: 30%
-  flex-grow: 1
-  box-sizing: border-box
-  justify-content: space-between
-  align-items: center
-  display: flex
-  flex: 1 1 100%
-  letter-spacing: normal
-  min-height: 48px
-  outline: none
-  padding-top: 0 !important
-  padding-bottom: 0 !important
-  padding-left: 11px !important
-  padding-right: 11px !important
-  position: relative
-  text-decoration: none
-  margin-left: 7px !important
-  margin-right: 7px !important
-
+.v-toolbar__content,
+.v-toolbar__extension {
+  padding: 0 !important;
+}
+.v-autocomplete__content.initialLayout > div {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0;
+}
+.v-menu-footer {
+  width: 100%;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
+  max-height: 500px !important;
+  height: 500px !important;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout {
+  max-height: 600px !important;
+  height: auto !important;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout {
+  padding-top: 20px !important;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
+  padding-top: 0 !important;
+}
 .v-autocomplete__content
-  .v-list-item__title
-    font-size: 21px !important
-    font-weight: 400 !important
-    margin-left: 16px
-    line-height: auto !important
+  .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  border-radius: 6px !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.initialLayout .v-list .v-list-item {
+  max-width: 30%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex: 1 1 100%;
+  letter-spacing: normal;
+  min-height: 48px;
+  outline: none;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 11px !important;
+  padding-right: 11px !important;
+  position: relative;
+  text-decoration: none;
+  margin-left: 7px !important;
+  margin-right: 7px !important;
+}
+.v-autocomplete__content .v-list-item__title {
+  font-size: 21px !important;
+  font-weight: 400 !important;
+  margin-left: 16px;
+  line-height: auto !important;
+}
+.v-autocomplete__content.initialLayout .v-list-item__title {
+  font-size: 18px !important;
+  margin-bottom: 10px !important;
+  font-weight: normal !important;
+  letter-spacing: -0.25px;
+  line-height: 20px;
+  margin-left: 0;
+}
+.v-autocomplete__content .v-list-item {
+  min-height: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 35px;
+  margin-bottom: 0 !important;
+}
+.v-autocomplete__content .v-avatar.v-list-item__avatar {
+  display: inline-block;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+  border: 1px solid #ebebeb !important;
+  border-radius: 9999px;
+  border-width: 1px;
+  width: 60px !important;
+  height: 60px !important;
+  min-width: auto !important;
+}
+.v-btn:not(.v-btn--round).v-size--default {
+  height: 58px !important;
+  min-width: 64px !important;
+  border-radius: 41px;
+  padding: 5px 5px 5px 12px !important;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+  border: 1px solid #ebebeb !important;
+}
 
-  &.initialLayout .v-list-item__title
-    font-size: 18px !important
-    margin-bottom: 10px !important
-    font-weight: normal !important
-    letter-spacing: -0.25px
-    line-height: 20px
-    margin-left: 0
+.v-btn:not(.v-btn--round).v-size--small::before,
+.v-btn:not(.v-btn--round).v-size--small:hover,
+.v-btn:not(.v-btn--round).v-size--small:focus {
+  color: transparent;
+}
 
-  .v-list-item
-    min-height: auto !important
-    margin-left: 0 !important
-    margin-right: 0 !important
-    padding-left: 35px
-    margin-bottom: 0 !important
+.v-btn:not(.v-btn--round).v-size--small {
+  height: 40px !important;
+  min-width: 50px;
+  padding: 17px 8.444444px !important;
+  border: 1px solid #ebebeb !important;
+}
 
-  .v-avatar.v-list-item__avatar
-    display: inline-block
-    background-size: 100%
-    background-position: center
-    cursor: pointer
-    border: 1px solid #ebebeb !important
-    border-radius: 9999px
-    border-width: 1px
-    width: 60px !important
-    height: 60px !important
-    min-width: auto !important
+.v-btn:hover {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
+  transition: box-shadow 0.2s ease;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout:before {
+  content: 'Popular Stores';
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-left: 18px;
+  font-size: 17px;
+  margin-top: 10px !important;
+  display: inline-block;
+}
+.v-btn__content .v-avatar {
+  width: 36px;
+  height: 36px;
+}
+.v-toolbar__content {
+  margin: auto;
+  box-sizing: inherit;
+  border: 0 solid #ebebeb;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  height: 80px;
+  max-width: 1120px;
+}
+.v-btn:hover {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
+  transition: box-shadow 0.2s ease;
+  background: #fff;
+}
+.v-icon.v-icon {
+  font-size: 18px;
+}
+.v-menu-footer {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+.v-input__slot.white {
+  padding-right: 7px !important;
+}
+.notranslate {
+  transform: none !important;
+}
+.Header {
+  box-shadow: 0 1px 12px rgb(0 0 0 / 8%);
+}
+.body {
+  background: #f7f7f7;
+}
+.expanding-search {
+  color: #111;
+}
+h4 {
+  margin-bottom: 19px;
+}
+.Search input {
+  cursor: pointer;
+}
+.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
+  padding: 30px 0 0 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 12px rgb(0 0 0 / 8%);
+  left: 0 !important;
+  right: 0;
+  margin: 24px auto;
+}
+.Menu {
+  border-radius: 24px;
+  padding: 0 !important;
+  position: relative;
+  display: flex;
+  transition: box-shadow 0.2s ease;
+}
+.Menu__hamburger {
+  display: flex;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  pointer-events: all;
+  background: transparent;
+  outline: none;
+}
 
-.v-btn
-  &:not(.v-btn--round)
-    &.v-size--default
-      height: 58px !important
-      min-width: 64px !important
-      border-radius: 41px
-      padding: 5px 5px 5px 12px !important
-      position: relative
-      transition: box-shadow 0.2s ease
-      border: 1px solid #ebebeb !important
+.Menu__hamburger.menu_open:before {
+  transform: translateY(2px) rotate(135deg);
+}
+.Menu__hamburger.menu_open:after {
+  transform: translateY(-2px) rotate(45deg);
+}
 
-    &.v-size--small
-      &::before, &:hover, &:focus
-        color: transparent
-
-      height: 40px !important
-      min-width: 50px
-      padding: 17px 8.444444px !important
-      border: 1px solid #ebebeb !important
-
-  &:hover
-    box-shadow: 0 2px 4px rgb(0 0 0 / 18%)
-    transition: box-shadow 0.2s ease
-
-.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout:before
-  content: 'Popular Stores'
-  font-weight: bold
-  text-transform: uppercase
-  padding-left: 18px
-  font-size: 17px
-  margin-top: 10px !important
-  display: inline-block
-
-.v-btn__content .v-avatar
-  width: 36px
-  height: 36px
-
-.v-toolbar__content
-  margin: auto
-  box-sizing: inherit
-  border: 0 solid #ebebeb
-  margin-left: auto
-  margin-right: auto
-  padding-left: 80px
-  padding-right: 80px
-  align-items: center
-  justify-content: space-between
-  display: flex
-  height: 80px
-  max-width: 1120px
-
-.v-btn:hover
-  box-shadow: 0 2px 4px rgb(0 0 0 / 18%)
-  transition: box-shadow 0.2s ease
-  background: #fff
-
-.v-icon.v-icon
-  font-size: 18px
-
-.v-menu-footer
-  background: #f7f7f7
-  padding: 20px
-  margin-top: 30px
-  text-align: center
-
-.v-input__slot.white
-  padding-right: 7px !important
-
-.notranslate
-  transform: none !important
-
-#Header
-  box-shadow: 0 1px 12px rgb(0 0 0 / 8%)
-
-.body
-  background: #f7f7f7
-
-#autocomplete
-  color: #111
-
-h4
-  margin-bottom: 19px
-
-.v-menu__content.theme--light.menuable__content__active.v-autocomplete__content
-  padding: 30px 0 0 0
-  background: #fff
-  border-radius: 12px
-  box-shadow: 0 1px 12px rgb(0 0 0 / 8%)
-  left: 0 !important
-  right: 0
-  margin: 24px auto
-
-.Menu
-  border-radius: 24px
-  padding: 0 !important
-  position: relative
-  display: flex
-  transition: box-shadow 0.2s ease
-
-.Menu__hamburger
-  display: flex
-  position: relative
-  width: 18px
-  height: 18px
-  cursor: pointer
-  pointer-events: all
-  background: transparent
-  outline: none
-
-  &.menu_open
-    &:before
-      transform: translateY(2px) rotate(135deg)
-
-    &:after
-      transform: translateY(-2px) rotate(45deg)
-
-  &:after, &:before
-    content: ''
-    position: absolute
-    top: 6px
-    left: 0
-    width: 18px
-    height: 2px
-    background: #000
-    transition: transform 0.3s ease-out
-
-  &:after
-    top: auto !important
-    bottom: 6px !important
-
-.v-avatar.v-list-item__avatar.smallAvatar
-  width: 40px !important
-  height: 40px !important
-  min-width: auto !important
+.Menu__hamburger:after,
+.Menu__hamburger:before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: #000;
+  transition: transform 0.3s ease-out;
+}
+.Menu__hamburger:after {
+  top: auto !important;
+  bottom: 6px !important;
+}
+.v-avatar.v-list-item__avatar.smallAvatar {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: auto !important;
+}
 </style>
