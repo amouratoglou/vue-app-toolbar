@@ -291,7 +291,7 @@ body .v-toolbar--prominent .v-toolbar__content {
   font-size: 15px;
   color: #979797 !important;
 }
-body .Search.closed input::placeholder {
+ .Search.closed input::placeholder {
   font-weight: 600;
   font-size: 15px;
   color: #343434 !important;
