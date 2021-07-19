@@ -243,8 +243,8 @@ export default {
 </script>
 
 <style>
-body {
-  background: #f7f7f7;
+.theme--light.v-application {
+  background: #f7f7f7 !important;
 }
 body .v-application {
   font-family: 'Proxima Nova', sans-serif;
