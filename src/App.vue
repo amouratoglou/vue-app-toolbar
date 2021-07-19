@@ -246,12 +246,14 @@ export default {
 </script>
 
 <style>
+body {
+  background: #f7f7f7;
+}
 body .v-application {
   font-family: 'Proxima Nova', sans-serif;
 }
-
-.body {
-  background: #f7f7f7;
+.Header {
+  box-shadow: 0 1px 12px rgb(0 0 0 / 8%) !important;
 }
 .Search {
   width: 600px;
@@ -267,14 +269,13 @@ body .v-application {
   box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
   transition: all 0.3s ease;
 }
-
+body .v-toolbar--prominent .v-toolbar__content {
+  align-items: center;
+}
 .v-toolbar__content .Search.closed {
   width: 365px !important;
   margin: auto;
   transition: all 0.3s ease;
-}
-body .v-toolbar--prominent .v-toolbar__content {
-  align-items: center;
 }
 .v-input__append-inner .v-input__icon {
   background: #635bff;
@@ -326,7 +327,6 @@ body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
   font-size: 18px;
   transition: all 0.5s ease;
 }
-
 .v-input__icon i {
   font-size: 22px;
   transition: all 0.5s ease;
@@ -339,7 +339,6 @@ body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
   padding: 5px;
   margin-right: 18 px;
 }
-
 .v-text-field--filled.v-input--dense > .v-input__control > .v-input__slot,
 .v-text-field--full-width.v-input--dense > .v-input__control > .v-input__slot,
 .v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot {
@@ -356,7 +355,8 @@ i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
 }
 .v-application a {
   color: #343434 !important;
-  font-size: 21px;
+  font-weight: 600;
+  font-size: 18px;
 }
 .skeleton {
   width: 160px;
@@ -387,11 +387,9 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   box-shadow: 0 10px 35px 0 rgb(0 0 0 / 15%);
   margin-top: 25px !important;
 }
-
 .Search .v-menu__content.theme--light.menuable__content__active {
   top: 71px;
 }
-
 .v-toolbar__content,
 .v-toolbar__extension {
   padding: 0 !important;
@@ -478,8 +476,8 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   border: 1px solid #ebebeb !important;
   border-radius: 9999px;
   border-width: 1px;
-  width: 60px !important;
-  height: 60px !important;
+  width: 48px !important;
+  height: 48px !important;
   min-width: auto !important;
 }
 .v-btn:not(.v-btn--round).v-size--default {
@@ -491,20 +489,17 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   transition: box-shadow 0.2s ease;
   border: 1px solid #ebebeb !important;
 }
-
 .v-btn:not(.v-btn--round).v-size--small::before,
 .v-btn:not(.v-btn--round).v-size--small:hover,
 .v-btn:not(.v-btn--round).v-size--small:focus {
   color: transparent;
 }
-
 .v-btn:not(.v-btn--round).v-size--small {
   height: 40px !important;
   min-width: 50px;
   padding: 17px 8.444444px !important;
   border: 1px solid #ebebeb !important;
 }
-
 .v-btn:hover {
   box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
   transition: box-shadow 0.2s ease;
@@ -514,8 +509,7 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   font-weight: bold;
   text-transform: uppercase;
   padding-left: 18px;
-  font-size: 17px;
-  margin-top: 10px !important;
+  font-size: 13px;
   display: inline-block;
 }
 .v-btn__content .v-avatar {
@@ -556,12 +550,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
 .notranslate {
   transform: none !important;
 }
-.Header {
-  box-shadow: 0 1px 12px rgb(0 0 0 / 8%);
-}
-.body {
-  background: #f7f7f7;
-}
 .expanding-search {
   color: #111;
 }
@@ -597,14 +585,12 @@ h4 {
   background: transparent;
   outline: none;
 }
-
 .Menu__hamburger.menu_open:before {
   transform: translateY(2px) rotate(135deg);
 }
 .Menu__hamburger.menu_open:after {
   transform: translateY(-2px) rotate(45deg);
 }
-
 .Menu__hamburger:after,
 .Menu__hamburger:before {
   content: '';
