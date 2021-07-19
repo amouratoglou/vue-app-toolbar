@@ -103,7 +103,7 @@
           </template>
         </v-autocomplete>
       </div>
-
+      <div class="menu-spacer"></div>
       <v-menu
         v-model="menu"
         :close-on-content-click="false"
@@ -122,7 +122,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <div class="Menu">
+            <div class="menu-container">
               <div class="Menu__hamburger mr-4" :class="{ menu_open: menu }">
                 <div></div>
               </div>
@@ -281,6 +281,9 @@ body .v-toolbar--prominent .v-toolbar__content {
 .Menu__hamburger div {
   overflow: hidden;
   white-space: nowrap;
+}
+.menu-spacer {
+  width: 85px;
 }
 .Search input::placeholder {
   opacity: 1;
@@ -460,33 +463,33 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   line-height: 20px;
   margin-left: 0;
 }
-.v-autocomplete__content .v-list-item {
-  min-height: auto !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+#app .v-autocomplete__content .v-list-item {
+  min-height: auto;
+  margin-left: 0;
+  margin-right: 0;
   padding-left: 35px;
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
-.v-autocomplete__content .v-avatar.v-list-item__avatar {
+#app .v-autocomplete__content .v-avatar.v-list-item__avatar {
   display: inline-block;
   background-size: 100%;
   background-position: center;
   cursor: pointer;
-  border: 1px solid #ebebeb !important;
+  border: 1px solid #ebebeb;
   border-radius: 9999px;
   border-width: 1px;
   width: 48px !important;
   height: 48px !important;
   min-width: auto !important;
 }
-.v-btn:not(.v-btn--round).v-size--default {
-  height: 58px !important;
-  min-width: 64px !important;
+#app .v-btn:not(.v-btn--round).v-size--default {
+  height: 58px;
+  min-width: 64px;
   border-radius: 41px;
-  padding: 5px 5px 5px 12px !important;
+  padding: 5px 5px 5px 12px;
   position: relative;
   transition: box-shadow 0.2s ease;
-  border: 1px solid #ebebeb !important;
+  border: 1px solid #ebebeb;
 }
 .v-btn:not(.v-btn--round).v-size--small::before,
 .v-btn:not(.v-btn--round).v-size--small:hover,
@@ -572,9 +575,9 @@ h4 {
   right: 0;
   margin: 24px auto;
 }
-.Menu {
+#app .Menu {
   border-radius: 24px;
-  padding: 0 !important;
+  padding: 0;
   position: relative;
   display: flex;
   transition: box-shadow 0.2s ease;
@@ -610,9 +613,9 @@ h4 {
   top: auto !important;
   bottom: 6px !important;
 }
-.v-avatar.v-list-item__avatar.smallAvatar {
-  width: 40px !important;
-  height: 40px !important;
-  min-width: auto !important;
+#app .v-avatar.v-list-item__avatar.smallAvatar {
+  width: 40px;
+  height: 40px;
+  min-width: auto;
 }
 </style>
