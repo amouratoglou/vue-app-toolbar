@@ -546,6 +546,11 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
 .v-input__slot.white {
   padding-right: 7px !important;
 }
+.v-select__selection,
+.v-select__selection--comma,
+.v-select.v-text-field input {
+  color: #111 !important;
+}
 .notranslate {
   transform: none !important;
 }
