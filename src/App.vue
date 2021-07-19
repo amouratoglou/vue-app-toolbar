@@ -283,7 +283,7 @@ body .v-toolbar--prominent .v-toolbar__content {
   white-space: nowrap;
 }
 .menu-spacer {
-  width: 85px;
+  width: 92px;
 }
 .Search input::placeholder {
   opacity: 1;
