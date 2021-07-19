@@ -114,13 +114,21 @@
         rounded-pill
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn color="white" depressed light v-bind="attrs" v-on="on">
+          <v-btn
+            color="white"
+            small
+            rounded
+            depressed
+            light
+            v-bind="attrs"
+            v-on="on"
+          >
             <div class="Menu">
               <div class="Menu__hamburger mr-4" :class="{ menu_open: menu }">
                 <div></div>
               </div>
             </div>
-            <v-avatar>
+            <v-avatar size="30">
               <img
                 src="https://lh3.googleusercontent.com/ogw/ADea4I4g8hbXwhXnDUi2IXfPKDvEa1NjaAXy4ZHT6uWhy5c=s83-c-mo"
                 alt="Agu"
@@ -132,13 +140,21 @@
         <v-card class="nav">
           <v-list>
             <v-list-item>
-              <v-list-item-title>Settings</v-list-item-title>
+              <v-list-item-title
+                ><p class="font-weight-bold">Settings</p></v-list-item-title
+              >
             </v-list-item>
             <v-list-item>
-              <v-list-item-title>Profile</v-list-item-title>
+              <v-list-item-title
+                ><p class="font-weight-bold">Profile</p></v-list-item-title
+              >
             </v-list-item>
             <v-list-item>
-              <v-list-item-title>Submit Coupons</v-list-item-title>
+              <v-list-item-title
+                ><p class="font-weight-bold">
+                  Submit Coupons
+                </p></v-list-item-title
+              >
             </v-list-item>
 
             <v-divider></v-divider>
@@ -190,7 +206,7 @@ export default {
             this.merchants = _.uniqBy(tempMerchants, 'id');
             setTimeout(() => {
               this.isLoading = false;
-            }, 600);
+            }, 900);
           }
         })
         .catch((e) => {
@@ -242,13 +258,13 @@ body .v-application {
   margin: auto;
   transition: all 0.3s ease;
 }
-.Search .v-input {
+.v-toolbar__content .Search .v-input {
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   transition: all 0.3s ease;
   border: 1px solid rgba(235, 235, 235);
 }
-body .closed {
-  width: 429px !important;
+.v-toolbar__content .Search.closed {
+  width: 365px !important;
   margin: auto;
   transition: all 0.3s ease;
 }
@@ -266,10 +282,12 @@ body .v-toolbar--prominent .v-toolbar__content {
 .Search input::placeholder {
   opacity: 1;
   font-weight: normal;
+  font-size: 15px;
   color: #979797 !important;
 }
 .Search.closed input::placeholder {
   font-weight: 600;
+  font-size: 15px;
   color: #111 !important;
 }
 body button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
@@ -281,9 +299,9 @@ body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
   cursor: pointer;
 }
 .nav .v-list-item__title {
-  font-size: 19px;
+  font-size: 15px;
   line-height: 20px !important;
-  font-weight: 600;
+  font-weight: 500;
 }
 .nav-menu.v-menu__content.theme--light.menuable__content__active {
   margin-top: 33px !important;
@@ -299,10 +317,28 @@ body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
   width: 48px !important;
   transition: all 0.5s ease;
 }
+.closed .v-input__icon i {
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+
+.v-input__icon i {
+  font-size: 22px;
+  transition: all 0.5s ease;
+}
+.mdi-close::before {
+  content: '\F0156';
+  font-size: 10px;
+  background: rgba(235, 235, 235, 235);
+  border-radius: 100px;
+  padding: 5px;
+  margin-right: 18 px;
+}
+
 .v-text-field--filled.v-input--dense > .v-input__control > .v-input__slot,
 .v-text-field--full-width.v-input--dense > .v-input__control > .v-input__slot,
 .v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot {
-  min-height: 52px !important;
+  min-height: 48px !important;
 }
 i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
   color: #fff;
@@ -447,6 +483,20 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   transition: box-shadow 0.2s ease;
   border: 1px solid #ebebeb !important;
 }
+
+.v-btn:not(.v-btn--round).v-size--small::before,
+.v-btn:not(.v-btn--round).v-size--small:hover,
+.v-btn:not(.v-btn--round).v-size--small:focus {
+  color: transparent;
+}
+
+.v-btn:not(.v-btn--round).v-size--small {
+  height: 40px !important;
+  min-width: 50px;
+  padding: 17px 8.444444px !important;
+  border: 1px solid #ebebeb !important;
+}
+
 .v-btn:hover {
   box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
   transition: box-shadow 0.2s ease;
@@ -460,13 +510,23 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   margin-top: 10px !important;
   display: inline-block;
 }
-.v-avatar {
-  width: 36px !important;
-  height: 36px !important;
+.v-btn__content .v-avatar {
+  width: 36px;
+  height: 36px;
 }
 .v-toolbar__content {
-  max-width: 1280px;
   margin: auto;
+  box-sizing: inherit;
+  border: 0 solid #ebebeb;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  height: 80px;
+  max-width: 1120px;
 }
 .v-btn:hover {
   box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
