@@ -231,8 +231,8 @@ export default {
 </script>
 
 <style>
-.v-application {
-  font-family: 'Proxima Nova' !important;
+body .v-application {
+  font-family: 'Proxima Nova', sans-serif;
 }
 .body {
   background: #f7f7f7;
@@ -242,22 +242,22 @@ export default {
   margin: auto;
   transition: all 0.3s ease;
 }
-.v-input {
+.Search .v-input {
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   transition: all 0.3s ease;
-  border: 1px solid rgba(235, 235, 235) !important;
+  border: 1px solid rgba(235, 235, 235);
 }
-.closed {
+body .closed {
   width: 429px !important;
   margin: auto;
   transition: all 0.3s ease;
 }
-.v-toolbar--prominent .v-toolbar__content {
-  align-items: center !important;
+body .v-toolbar--prominent .v-toolbar__content {
+  align-items: center;
 }
 .v-input__append-inner .v-input__icon {
-  background: #635bff !important;
-  border-radius: 100% !important;
+  background: #635bff;
+  border-radius: 100%;
 }
 .Menu__hamburger div {
   overflow: hidden;
@@ -268,17 +268,15 @@ export default {
   font-weight: normal;
   color: #979797 !important;
 }
-
 .Search.closed input::placeholder {
   font-weight: 600;
   color: #111 !important;
 }
-
-button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
-  padding: 0 0 0 12px !important;
+body button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
+  padding: 0 0 0 12px;
 }
-.nav.v-card.v-sheet.theme--light .v-list-item:hover {
-  background: #f1f1f1 !important;
+body .nav.v-card.v-sheet.theme--light .v-list-item:hover {
+  background: #f1f1f1;
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -296,7 +294,6 @@ button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
   color: #fff;
   transition: all 0.5s ease;
 }
-
 .v-input__append-inner .v-input__icon {
   height: 48px !important;
   width: 48px !important;
@@ -307,7 +304,6 @@ button.v-btn.v-btn--has-bg.theme--light.v-size--default.white {
 .v-text-field--outlined.v-input--dense > .v-input__control > .v-input__slot {
   min-height: 52px !important;
 }
-
 i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
   color: #fff;
 }
@@ -346,7 +342,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   width: 240px;
   box-shadow: 0 10px 35px 0 rgb(0 0 0 / 15%);
   margin-top: 25px !important;
-  margin-left: -199px;
 }
 
 .Search .v-menu__content.theme--light.menuable__content__active {
@@ -380,11 +375,9 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
 .v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout {
   padding-top: 20px !important;
 }
-
 .v-menu__content.theme--light.menuable__content__active.v-autocomplete__content {
   padding-top: 0 !important;
 }
-
 .v-autocomplete__content
   .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
   border-radius: 6px !important;
@@ -392,7 +385,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   margin-bottom: 20px;
   margin-top: 20px;
 }
-
 .initialLayout .v-list .v-list-item {
   max-width: 30%;
   flex-grow: 1;
@@ -419,7 +411,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   margin-left: 16px;
   line-height: auto !important;
 }
-
 .v-autocomplete__content.initialLayout .v-list-item__title {
   font-size: 18px !important;
   margin-bottom: 10px !important;
@@ -435,7 +426,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   padding-left: 35px;
   margin-bottom: 0 !important;
 }
-
 .v-autocomplete__content .v-avatar.v-list-item__avatar {
   display: inline-block;
   background-size: 100%;
@@ -448,7 +438,6 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   height: 60px !important;
   min-width: auto !important;
 }
-
 .v-btn:not(.v-btn--round).v-size--default {
   height: 58px !important;
   min-width: 64px !important;
@@ -458,12 +447,10 @@ button.v-icon.notranslate.v-icon--link.mdi.mdi-close.theme--light.white--text {
   transition: box-shadow 0.2s ease;
   border: 1px solid #ebebeb !important;
 }
-
 .v-btn:hover {
   box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
   transition: box-shadow 0.2s ease;
 }
-
 .v-menu__content.theme--light.menuable__content__active.v-autocomplete__content.initialLayout:before {
   content: 'Popular Stores';
   font-weight: bold;
@@ -562,7 +549,6 @@ h4 {
   top: auto !important;
   bottom: 6px !important;
 }
-
 .v-avatar.v-list-item__avatar.smallAvatar {
   width: 40px !important;
   height: 40px !important;
