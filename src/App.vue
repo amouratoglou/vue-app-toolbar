@@ -238,9 +238,6 @@ export default {
   mounted() {
     const inputField = document.querySelector('.v-input__icon--append');
     inputField.classList.remove('v-input__icon--append');
-    const inputSlot = document.getElementById('autocomplete');
-    inputSlot.style.color = 'black';
-    inputSlot.style.fontSize = '19px';
   },
 };
 </script>
@@ -291,7 +288,7 @@ body .v-toolbar--prominent .v-toolbar__content {
   font-size: 15px;
   color: #979797 !important;
 }
- .Search.closed input::placeholder {
+.Search.closed input::placeholder {
   font-weight: 600;
   font-size: 15px;
   color: #343434 !important;
@@ -364,6 +361,8 @@ i.v-icon.notranslate.mdi.mdi-magnify.theme--light {
 }
 .skeleton > div {
   margin-bottom: 15px;
+  margin-left: 18px;
+  margin-top: 18px;
 }
 .v-skeleton-loader__bone {
   margin-bottom: 11px;
