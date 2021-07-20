@@ -242,7 +242,7 @@ export default {
 .theme--light.v-application {
   background: #f7f7f7 !important;
 }
-#app .v-application {
+body .v-application {
   font-family: 'Proxima Nova', sans-serif;
 }
 .Header {
