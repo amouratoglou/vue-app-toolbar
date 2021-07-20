@@ -235,10 +235,6 @@ export default {
   created() {
     this.getMerchants();
   },
-  mounted() {
-    const inputField = document.querySelector('.v-input__icon--append');
-    inputField.classList.remove('v-input__icon--append');
-  },
 };
 </script>
 
@@ -246,7 +242,7 @@ export default {
 .theme--light.v-application {
   background: #f7f7f7 !important;
 }
-body .v-application {
+#app .v-application {
   font-family: 'Proxima Nova', sans-serif;
 }
 .Header {
